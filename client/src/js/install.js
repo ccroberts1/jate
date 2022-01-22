@@ -4,14 +4,12 @@ const butInstall = document.getElementById("buttonInstall");
 // TODO: Add an event handler to the `beforeinstallprompt` event
 //TODO: Figure out variables for cacheName and cachedResources based on src-sw.js configs
 window.addEventListener("beforeinstallprompt", (event) => {
-  event.preventDefault();
   console.log("Install event");
-  deferredPrompt = event;
-  event.waitUntil(
-    caches.open(cacheName).then((cache) => {
-      return cache.addAll(cachedResources);
-    })
-  );
+  //   event.waitUntil(
+  //     caches.open(page-cache).then((cache) => {
+  //       return cache.addAll(cachedResources);
+  //     })
+  //   );
 });
 
 // TODO: Implement a click event handler on the `butInstall` element
