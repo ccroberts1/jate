@@ -5,27 +5,33 @@ const butInstall = document.getElementById("buttonInstall");
 //TODO: Figure out variables for cacheName and cachedResources based on src-sw.js configs
 window.addEventListener("beforeinstallprompt", (event) => {
   console.log("Install event");
-  //   event.waitUntil(
-  //     caches.open(page-cache).then((cache) => {
-  //       return cache.addAll(cachedResources);
-  //     })
-  //   );
+  //Stores the event
+  window.deferredPrompt = event;
+  //Removes hidden from the butInstall element
+  butInstall.classList.toggle("hidden", false);
 });
 
 // TODO: Implement a click event handler on the `butInstall` element
 butInstall.addEventListener("click", async () => {
   console.log("Activate event");
+  const promptEvent = window.deferredPrompt;
+
+  if (!promptEvent) {
+    return;
+  }
+
+  //Prompts user to install PWA
+  promptEvent.prompt();
+
+  //Resets the deferred prompt variable and hides the button
+  window.deferredPrompt = null;
+
+  butInstall.classList.toggle("hidden", true);
 });
 
 // TODO: Add an handler for the `appinstalled` event
 window.addEventListener("appinstalled", (event) => {
   console.log("Fetch intercepted for:", event.request.url);
+  //Clears install prompt
+  window.deferredPrompt = null;
 });
-
-//Code for offline loading from GCD PW training
-// window.addEventListener("fetch", event => {
-//     event.respondWith(caches.match(event.request)
-// .then(cachedResponse => {
-//     return cachedResponse || fetch(event.request)
-// }));
-// })
