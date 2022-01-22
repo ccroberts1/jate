@@ -12,7 +12,6 @@ const initdb = async () =>
     },
   });
 
-// TODO: Add logic to a method that accepts some content and adds it to the database
 export const putDb = async (content) => {
   console.log("Adding content to the database");
 
@@ -26,14 +25,13 @@ export const putDb = async (content) => {
   const store = newTx.objectStore("jate");
 
   //Adds the content to the object store
-  const request = store.add({ jate: content });
+  const request = store.add({ content: content });
 
   //Confirms the request
   const result = await request;
   console.log("Data has been saved to the database", result);
 };
 
-// TODO: Add logic for a method that gets all the content from the database
 export const getDb = async () => {
   console.log("Get all content from the database");
   //Creates connection to the JATE database and specifies the version being used
