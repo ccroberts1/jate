@@ -8,6 +8,8 @@ This is a text editor (Just Another Text Editor) built with Node, Express.js, We
 
 ![Screenshot of the deployed app](./screenshot.png)
 
+[Deployed Application](https://jatebycait.herokuapp.com/)
+
 ## Table of Contents
 
 - [Installation](#installation)
